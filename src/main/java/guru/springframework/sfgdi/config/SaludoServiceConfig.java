@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
+import guru.springframework.sfgdi.repo.SaludoEspRepo;
+import guru.springframework.sfgdi.repo.SaludoEspRepoImp;
 import guru.springframework.sfgdi.services.ConstructorSaludoService;
 import guru.springframework.sfgdi.services.I18nSaludoService;
 import guru.springframework.sfgdi.services.PrimaryGreetingService;
@@ -36,10 +38,15 @@ public class SaludoServiceConfig {
 		return new PrimaryGreetingService();
 	}
 	
+	@Bean
+	SaludoEspRepo saludoEspRepo() {
+		return new SaludoEspRepoImp();
+	}
+	
 	@Profile({"ES","default"})
 	@Bean
-	I18nSaludoService i18nService() {
-		return new I18nSaludoService();
+	I18nSaludoService i18nService(SaludoEspRepo saludoInglesRepo) {
+		return new I18nSaludoService(saludoInglesRepo);
 	}
 	
 	@Profile({"EN"})

@@ -1,5 +1,7 @@
 package guru.springframework.sfgdi.services;
 
+import guru.springframework.sfgdi.repo.SaludoEspRepo;
+
 //import org.springframework.context.annotation.Profile;
 //import org.springframework.stereotype.Service;
 
@@ -7,10 +9,17 @@ package guru.springframework.sfgdi.services;
 //@Service("I18nService")//el servicio se llamara de la siguiente manera
 public class I18nSaludoService implements SaludoService {
 
+	private final SaludoEspRepo saludoEspRepo;
+	
+	public I18nSaludoService(SaludoEspRepo saludoEspRepo) {
+		this.saludoEspRepo = saludoEspRepo;
+	}
+
+
+
 	@Override
 	public String diSaludos() {
-		// TODO Auto-generated method stub
-		return "Hola mundo imperfecto - ES";
+		return saludoEspRepo.getSaludo();
 	}
 
 }
