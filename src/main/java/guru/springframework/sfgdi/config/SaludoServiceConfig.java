@@ -3,10 +3,8 @@ package guru.springframework.sfgdi.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
 
 import com.springframework.mascotas.MascotaServiceFactory;
 import com.springframework.mascotas.PetService;
@@ -23,8 +21,7 @@ import guru.springframework.sfgdi.services.SetterSaludoService;
 import guru.springframework.sfgdi.services.I18nEnglishService;
 
 //se utiliza cuando no somo dueños del codigo, y queremos traer ese codigo a
-@Configuration // nuestra aplicacion
-@PropertySource("classpath:datasource.properties")//acoplar otro property source
+@Configuration // nuestra aplicacion//@PropertySource("classpath:datasource.properties")//acoplar otro property source
 public class SaludoServiceConfig {
 
 	@Bean
