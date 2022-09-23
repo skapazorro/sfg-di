@@ -25,12 +25,8 @@ import guru.springframework.sfgdi.services.I18nEnglishService;
 public class SaludoServiceConfig {
 
 	@Bean
-	FalsaDataSource falsaDataSource(@Value("${guru.username}") String username, @Value("${guru.password}") String password,
-			@Value("${guru.jdbcurl}") String jdbcurl) {
+	FalsaDataSource falsaDataSource() {
 		FalsaDataSource falsaDataSource = new FalsaDataSource();
-		falsaDataSource.setUsername(username);
-		falsaDataSource.setPassword(password);
-		falsaDataSource.setJdbcurl(jdbcurl);
 		return falsaDataSource;
 	}
 

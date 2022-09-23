@@ -1,5 +1,10 @@
 package guru.springframework.sfgdi.datasource;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
+@ConfigurationProperties("guru")
+@Configuration
 public class FalsaDataSource {
 	
 	private String username;
