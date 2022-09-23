@@ -11,15 +11,18 @@ import guru.springframework.sfgdi.controllers.MiControlador;
 import guru.springframework.sfgdi.controllers.PetController;
 import guru.springframework.sfgdi.controllers.PropiedadInyectadaControlador;
 import guru.springframework.sfgdi.controllers.SetterInyectionController;
+import guru.springframework.sfgdi.datasource.FalsaDataSource;
+import guru.springframework.sfgdi.services.PrototypeBean;
+import guru.springframework.sfgdi.services.SingletonBean;
 
-@ComponentScan(basePackages = {"guru.springframework.sfgdi","com.springframework.mascotas"})
+@ComponentScan(basePackages = { "guru.springframework.sfgdi", "com.springframework.mascotas" })
 @SpringBootApplication
 public class SfgDiApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(SfgDiApplication.class, args);
-		
-		PetController petController = ctx.getBean("petController",PetController.class);
+
+		PetController petController = ctx.getBean("petController", PetController.class);
 		System.out.println("-- la mejor mascota es: ");
 		System.out.println(petController.whichPetIsTheBest());
 
@@ -43,6 +46,22 @@ public class SfgDiApplication {
 		ConstructorInyectionController ConstructorContr = (ConstructorInyectionController) ctx
 				.getBean("constructorInyectionController");
 		System.out.println(ConstructorContr.getSaludo());
+
+		System.out.println("--- Bean Scopes----");
+		SingletonBean singletonBean1 = ctx.getBean(SingletonBean.class);
+		System.out.println(singletonBean1.getMyScope());
+		SingletonBean singletonBean2 = ctx.getBean(SingletonBean.class);
+		System.out.println(singletonBean2.getMyScope());
+
+		PrototypeBean prototypeBean1 = ctx.getBean(PrototypeBean.class);
+		System.out.println(prototypeBean1.getMyScope());
+		PrototypeBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
+		System.out.println(prototypeBean2.getMyScope());
+
+		FalsaDataSource falsaDataSource = ctx.getBean(FalsaDataSource.class);
+		System.out.println(falsaDataSource.getUsername());
+		System.out.println(falsaDataSource.getPassword());
+		System.out.println(falsaDataSource.getJdbcurl());
 	}
 
 }
